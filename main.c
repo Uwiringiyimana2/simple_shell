@@ -2,72 +2,80 @@
 
 int main(int ac, char **argv)
 {
-	char *line = NULL, *linecopy = NULL;
+	char *lineptr = NULL, *lineptr_cpy = NULL;
 	size_t n = 0;
 	ssize_t read;
-	char *prompt = {"Eric&BenShell$ "};
-	const char *delim = " \0";
-	int num_token = 0;
+	int status;
+	pid_t child_pid;
+	int i, count = 0;
 	char *token;
-	int i;
-
-	/*declaring void variables*/
+	const char *delim = " \n";
+	char *path;
+	
+	/* unused parameters*/
 	(void)ac;
 
-	while (1)
-	{
-		printf("%s", prompt);
+	while (1){
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "E&Bshell$  ", 10);
 
-		read = getline(&line, &n, stdin);
-
-		 /* check getline fail or reaches EOF*/
+		read = getline(&lineptr, &n, stdin);
 		if (read == -1)
 		{
-	 		perror("getline error");
 			return (-1);
-		}											                
+		}
 
-		linecopy = malloc(sizeof(char) * read);
-
-		if (linecopy == NULL)
+		lineptr_cpy = malloc(sizeof(char) * read);
+		if (lineptr_cpy == NULL)
 		{
-			perror("menory is empty, errror in copy");
-			return(-1);
-															                 }
+			perror("memory allocation failed");
+			return (1);
+		}
+		strcpy(lineptr_cpy, lineptr);
 
-		strcpy(linecopy, line);
-
-
-		token = strtok(line, delim);
-
+		token = strtok(lineptr, delim);
 		while (token != NULL)
-		{	
-			num_token++;
+		{
+			count++;
 			token = strtok(NULL, delim);
 		}
-		num_token++;
-		
-		argv[i] = malloc (sizeof(char*) * num_token);
+		count++;
 
-		token = strtok(linecopy, delim);
+		argv = malloc(sizeof(char *) * count);
 
-		/*storing each token in it arry of argv*/
+		token = strtok(lineptr_cpy, delim);
 		for (i = 0; token != NULL; i++)
 		{
 			argv[i] = malloc(sizeof(char) * strlen(token));
-			strcpy(argv[i], token);
-
+			argv[i] = token;
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
-		
 
-		/*Execute the command*/
-		exec(argv);
-		 
+		path = get_file_path(argv[0]);
+
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			perror("fork Failed");
+			return (1);
+		}
+
+		if (child_pid == 0)
+		{
+			if (execve(path, argv, NULL) == -1)
+			{
+				perror("Execution failed: Not found");
+				return (1);
+			}
+		}
+		else {
+			wait(&status);
+		}
 	}
-	free(linecopy);
-	free(line);
 
-	return(0);
+	free(lineptr);
+	free(lineptr_cpy);
+	free(argv);
+	return (0);
 }

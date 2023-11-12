@@ -5,7 +5,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 
-void exec(char **argv);
+char *get_file_path(char *filename);
+char *get_file_loc(char *path, char *filename);
+int forward_slash(const char *str);
 
 #endif
