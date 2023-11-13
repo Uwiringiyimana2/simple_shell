@@ -2,7 +2,6 @@
 /**
  * handle_builtin_cmd - handles all builtin commands
  * @args: Arguments to the built in commands
- * @num_args: Number of argument
  * @input: The input command
  * @env: The environment variables
  *

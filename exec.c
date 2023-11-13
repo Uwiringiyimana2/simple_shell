@@ -3,6 +3,7 @@
 /**
  * exec_cmd - executes command
  * @args: Arguments to execute
+ * @env: environment variables
  *
  * Return: -1 unsuccessfully
  */

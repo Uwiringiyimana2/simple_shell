@@ -1,8 +1,9 @@
 #include "main.h"
 
-/*handle_exit - handles exit functionality
+/**
+ * handle_exit - handles exit functionality
  * @input: Input to handle
- * @status: exit status
+ * @exit_status: exit status
  *
  * Return: Nothing
  */

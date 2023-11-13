@@ -41,7 +41,6 @@ char *get_file_loc(char *path, char *filename)
 			free(path_cpy);
 			return (buf);
 		}
-		
 		token = strtok(NULL, ":");
 	}
 	free(path_cpy);

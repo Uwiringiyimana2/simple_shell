@@ -12,7 +12,8 @@ int main(int ac, char **argv, char **env)
 	/* unused parameters*/
 	(void)ac;
 
-	while (1){
+	while (1)
+	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "E&Bshell$  ", 10);
 

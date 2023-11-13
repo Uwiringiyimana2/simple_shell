@@ -2,7 +2,8 @@
 
 /**
  * print_env - prints the environment
- * @env - enviroments
+ * @env: enviroments
+ *
  * Return: Nothing
  */
 void print_env(char **env)
