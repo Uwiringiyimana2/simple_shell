@@ -1,6 +1,6 @@
 #include "main.h"
 
-int main(int ac, char **argv)
+int main(int ac, char **argv, char **env)
 {
 	char *lineptr = NULL, *lineptr_cpy = NULL;
 	size_t n = 0;
@@ -51,6 +51,9 @@ int main(int ac, char **argv)
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
+
+		if (handle_builtin_cmd(argv, argv[0], env))
+			return (0);
 
 		path = get_file_path(argv[0]);
 
