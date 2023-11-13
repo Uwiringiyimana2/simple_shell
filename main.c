@@ -5,12 +5,9 @@ int main(int ac, char **argv, char **env)
 	char *lineptr = NULL, *lineptr_cpy = NULL;
 	size_t n = 0;
 	ssize_t read;
-	int status;
-	pid_t child_pid;
 	int i, count = 0;
 	char *token;
 	const char *delim = " \n";
-	char *path;
 	
 	/* unused parameters*/
 	(void)ac;
@@ -52,29 +49,7 @@ int main(int ac, char **argv, char **env)
 		}
 		argv[i] = NULL;
 
-		if (handle_builtin_cmd(argv, argv[0], env))
-			return (0);
-
-		path = get_file_path(argv[0]);
-
-		child_pid = fork();
-		if (child_pid == -1)
-		{
-			perror("fork Failed");
-			return (1);
-		}
-
-		if (child_pid == 0)
-		{
-			if (execve(path, argv, NULL) == -1)
-			{
-				perror("Execution failed: Not found");
-				return (1);
-			}
-		}
-		else {
-			wait(&status);
-		}
+		exec_cmd(argv, env);
 	}
 
 	free(lineptr);
