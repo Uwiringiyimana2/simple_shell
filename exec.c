@@ -29,7 +29,6 @@ int exec_cmd(char **args, char **env)
 	{
 		if (execve(path, args, NULL) == -1)
 		{
-			perror("Execution Failed");
 			return (-1);
 		}
 	}

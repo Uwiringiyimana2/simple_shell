@@ -28,7 +28,7 @@ char *get_file_path(char *filename)
 	if (full_path == NULL)
 	{
 		write(2, filename, strlen(filename));
-		write(2, ": Command not found\n", 19);
+		write(2, ": not found\n", 19);
 		return (NULL);
 	}
 

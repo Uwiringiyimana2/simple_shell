@@ -18,4 +18,8 @@ int handle_builtin_cmd(char **args, char *input, char **env);
 void print_env(char **env);
 int exec_cmd(char **args, char **env);
 
+/*tokenization functions*/
+size_t tokenize(char *str, char *delim);
+char **word_list(char *str, char *delim, ssize_t read);
+
 #endif
