@@ -33,7 +33,7 @@ char *_getenv(char *name)
 
 	while (*env != NULL)
 	{
-		equal_s = strchr(*env, '=');
+		equal_s = _strchr(*env, '=');
 		if (equal_s != NULL)
 		{
 			name_len = equal_s - *env;
