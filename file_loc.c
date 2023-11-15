@@ -14,7 +14,7 @@ char *get_file_loc(char *path, char *filename)
 	struct stat st;
 	char *buf = NULL;
 
-	path_cpy = strdup(path);
+	path_cpy = _strdup(path);
 	token = strtok(path_cpy, ":");
 
 	while (token)

@@ -15,7 +15,7 @@ char *get_file_path(char *filename)
 	path = _getenv("PATH");
 
 	if (forward_slash(filename) && access(filename, X_OK) == 0)
-		return (strdup(filename));
+		return (_strdup(filename));
 
 	if (!path)
 	{

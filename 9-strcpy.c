@@ -14,3 +14,27 @@ char *_strcpy(char *dest, char *src)
 	dest[a] = '\0';
 	return (dest);
 }
+
+/**
+ * _strdup - duplicates a string
+ * @str: string to duplicate
+ *
+ * Return: copy of str
+ */
+char *_strdup(char *str)
+{
+	char *dup;
+
+	if (str == NULL)
+		return NULL;
+
+	dup = malloc(_strlen(str) + 1);
+
+	if (dup != NULL)
+	{
+		_strcpy(dup, str);
+	}
+
+	return (dup);
+}
+
