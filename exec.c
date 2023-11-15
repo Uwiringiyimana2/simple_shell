@@ -4,16 +4,20 @@
  * exec_cmd - executes command
  * @args: Arguments to execute
  * @env: environment variables
+ * @input: Arguments read
  *
  * Return: -1 unsuccessfully
  */
-int exec_cmd(char **args, char **env)
+int exec_cmd(char *input, char **args, char **env)
 {
 	char *path;
 	int status;
 	pid_t child_pid;
+	size_t arg_count;
 
-	if (handle_builtin_cmd(args, args[0], env))
+	arg_count = tokenize(input, " \n");
+
+	if (handle_builtin_cmd(args, arg_count, args[0], env))
 		return (0);
 
 	path = get_file_path(args[0]);

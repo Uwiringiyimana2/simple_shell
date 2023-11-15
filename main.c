@@ -31,7 +31,7 @@ int main(int ac, char **argv, char **env)
 
 		argv = word_list(lineptr, delim, read);
 
-		exec_cmd(argv, env);
+		exec_cmd(lineptr, argv, env);
 	}
 
 	free(lineptr);
