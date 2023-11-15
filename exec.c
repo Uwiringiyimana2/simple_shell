@@ -20,7 +20,7 @@ int exec_cmd(char *input, char **args, char **env)
 	if (handle_builtin_cmd(args, arg_count, args[0], env))
 		return (0);
 
-	path = get_file_path(args[0]);
+	path = get_file_path(args[0], env);
 
 	child_pid = fork();
 

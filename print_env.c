@@ -19,15 +19,13 @@ void print_env(char **env)
 /**
  * _getenv - gets environment variable
  * @name: environment variable to search
+ * @env: environment lists
  *
  * Return: pointer to environment variable
  */
 
-extern char **environ;
-
-char *_getenv(char *name)
+char *_getenv(char **env, char *name)
 {
-	char **env = environ;
 	char *equal_s;
 	int name_len;
 

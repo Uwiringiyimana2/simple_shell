@@ -17,7 +17,7 @@ int handle_builtin_cmd(char **args, int argc, char *input, char **env)
 	}
 	else if (_strcmp(args[0], "cd") == 0)
 	{
-		change_dir(args, argc);
+		change_dir(args, argc, env);
 		return (1);
 	}
 	else if (_strcmp(args[0], "env") == 0)
@@ -33,15 +33,16 @@ int handle_builtin_cmd(char **args, int argc, char *input, char **env)
  * change_dir - changes directory
  * @argv: Array of commands
  * @argc: Arguments count
+ * @env: environment lists
  *
  * Return: Nothing
  */
-void change_dir(char **argv, int argc)
+void change_dir(char **argv, int argc, char **env)
 {
 	const char *home_dir, *prev_dir;
 
-	home_dir = _getenv("HOME");
-	prev_dir = _getenv("OLDPWD");
+	home_dir = _getenv(env, "HOME");
+	prev_dir = _getenv(env, "OLDPWD");
 
 	if (argc == 1 || (_strcmp(argv[1], "~")) == 0)
 	{
