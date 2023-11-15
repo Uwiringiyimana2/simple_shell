@@ -12,7 +12,7 @@ char *get_file_path(char *filename)
 	char *path;
 	char *full_path;
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 
 	if (forward_slash(filename) && access(filename, X_OK) == 0)
 		return (strdup(filename));

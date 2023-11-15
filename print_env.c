@@ -15,3 +15,35 @@ void print_env(char **env)
 		env++;
 	}
 }
+
+/**
+ * _getenv - gets environment variable
+ * @name: environment variable to search
+ *
+ * Return: pointer to environment variable
+ */
+
+extern char **environ;
+
+char *_getenv(char *name)
+{
+	char **env = environ;
+	char *equal_s;
+	int name_len;
+
+	while (*env != NULL)
+	{
+		equal_s = strchr(*env, '=');
+		if (equal_s != NULL)
+		{
+			name_len = equal_s - *env;
+
+			if (_strlen(name) == name_len && _strcmp(*env, name) == 0)
+			{
+				return (equal_s + 1);
+			}
+		}
+		env++;
+	}
+	return (NULL);
+}

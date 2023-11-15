@@ -40,8 +40,8 @@ void change_dir(char **argv, int argc)
 {
 	const char *home_dir, *prev_dir;
 
-	home_dir = getenv("HOME");
-	prev_dir = getenv("OLDPWD");
+	home_dir = _getenv("HOME");
+	prev_dir = _getenv("OLDPWD");
 
 	if (argc == 1 || (_strcmp(argv[1], "~")) == 0)
 	{

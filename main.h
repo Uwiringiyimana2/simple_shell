@@ -18,6 +18,8 @@ void print_env(char **env);
 int exec_cmd(char *input, char **args, char **env);
 int handle_builtin_cmd(char **args, int argc, char *input, char **env);
 void change_dir(char **argv, int argc);
+char *_getenv(char *name);
+char *_strchr(char *s, char c);
 
 /*tokenization functions*/
 size_t tokenize(char *str, char *delim);
