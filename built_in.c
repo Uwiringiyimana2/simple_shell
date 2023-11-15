@@ -11,16 +11,16 @@
 
 int handle_builtin_cmd(char **args, int argc, char *input, char **env)
 {
-	if (strcmp(args[0], "exit") == 0)
+	if (_strcmp(args[0], "exit") == 0)
 	{
 		return (exit_shell(args, input));
 	}
-	else if (strcmp(args[0], "cd") == 0)
+	else if (_strcmp(args[0], "cd") == 0)
 	{
 		change_dir(args, argc);
 		return (1);
 	}
-	else if (strcmp(args[0], "env") == 0)
+	else if (_strcmp(args[0], "env") == 0)
 	{
 		print_env(env);
 		return (1);
@@ -43,7 +43,7 @@ void change_dir(char **argv, int argc)
 	home_dir = getenv("HOME");
 	prev_dir = getenv("OLDPWD");
 
-	if (argc == 1 || (strcmp(argv[1], "~")) == 0)
+	if (argc == 1 || (_strcmp(argv[1], "~")) == 0)
 	{
 		if (!home_dir)
 		{
@@ -53,7 +53,7 @@ void change_dir(char **argv, int argc)
 		if (chdir(home_dir) != 0)
 			perror("cd");
 	}
-	else  if (argc == 2 || (strcmp(argv[1], "-")) == 0)
+	else  if (argc == 2 || (_strcmp(argv[1], "-")) == 0)
 	{
 		if (!prev_dir)
 		{

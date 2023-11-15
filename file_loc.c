@@ -24,17 +24,17 @@ char *get_file_loc(char *path, char *filename)
 			free(buf);
 			buf = NULL;
 		}
-		buf = malloc(strlen(token) + strlen(filename) + 2);
+		buf = malloc(_strlen(token) + _strlen(filename) + 2);
 		if (!buf)
 		{
 			perror("Error: malloc failed");
 			return (NULL);
 		}
 
-		strcpy(buf, token);
-		strcat(buf, "/");
-		strcat(buf, filename);
-		strcat(buf, "\0");
+		_strcpy(buf, token);
+		_strcat(buf, "/");
+		_strcat(buf, filename);
+		_strcat(buf, "\0");
 
 		if (stat(buf, &st) == 0 && access(buf, X_OK) == 0)
 		{

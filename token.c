@@ -39,7 +39,7 @@ char **word_list(char *str, char *delim, ssize_t read)
 		perror("malloc failed");
 		return (NULL);
 	}
-	strcpy(str_copy, str);
+	_strcpy(str_copy, str);
 
 	words_count = tokenize(str_copy, delim);
 
@@ -49,7 +49,7 @@ char **word_list(char *str, char *delim, ssize_t read)
 	token = strtok(str, delim);
 	for (i = 0; token != NULL; i++)
 	{
-		args[i] = malloc(sizeof(char) * strlen(token));
+		args[i] = malloc(sizeof(char) * _strlen(token));
 		args[i] = token;
 		token = strtok(NULL, delim);
 	}

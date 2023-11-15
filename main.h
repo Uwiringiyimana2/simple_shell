@@ -23,4 +23,10 @@ void change_dir(char **argv, int argc);
 size_t tokenize(char *str, char *delim);
 char **word_list(char *str, char *delim, ssize_t read);
 
+/*string functions*/
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
+char *_strcat(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
+
 #endif
